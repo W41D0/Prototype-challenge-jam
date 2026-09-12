@@ -4,45 +4,65 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem;
+using System.Linq;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
     public List<Robot> ActiveRobots;
+    public Dictionary<(Personalites, Personalites), int> PersonalityCompatibilityStregthDict = new();
+    [SerializeField] private InputActionReference _continueInput;
     
-    [Header("Testing")]
-    [SerializeField] private Dialogue[] _testDialogueLines;
-    [SerializeField] private float _testTimeBetweenLines;
+    [SerializeField] private int _textCountBase;
+    [SerializeField] private int _textCountVariability;
+    [SerializeField] private int _connectionVariability;
+
+    private int currentCompatibilityStrength;
 
 
     void Start()
     {
-        StartCoroutine(TestDialogue());
+        InitializeRobots();
     }
 
-
-    private IEnumerator TestDialogue()
+    private void InitializeRobots()
     {
-        foreach (Dialogue dialogueLine in _testDialogueLines)
-        {
-            Debug.Log($"{dialogueLine.SpeakerName.ToString()}: {dialogueLine.Line}");
-            CallDialogue(dialogueLine);
-            yield return new WaitForSeconds(_testTimeBetweenLines);
-        }
-    }  
+        currentCompatibilityStrength = GetCompatibility(ActiveRobots[0].CharacterData.Personality, ActiveRobots[1].CharacterData.Personality);
 
-    private void CallDialogue(Dialogue dialogue)
+        ActiveRobots[0].ReceiveMatchedRobotCompatibility(currentCompatibilityStrength);
+        ActiveRobots[1].ReceiveMatchedRobotCompatibility(currentCompatibilityStrength);
+    }
+
+    void Update()
     {
-        Robot speakingRobot = null;
+        if (_continueInput.action.WasPressedThisFrame()) CallNextDialogue();
+    }
+    private void CallNextDialogue()
+    {
+        if (ActiveRobots.Count != 2) return;
 
-        foreach (Robot robot in ActiveRobots)
-        {
-            if (robot.CharacterData.Name == dialogue.SpeakerName) speakingRobot = robot;
-        }
+        int speakingBotIndex = RollConfidenceForOrder();
+        int listeningBotIndex = (speakingBotIndex == 0) ? 1 : 0;
 
-        if (speakingRobot == null) return;
+        int confidenceValue = ActiveRobots[speakingBotIndex].CharacterData.Confidence;
+        int textCount = VariabilityFunction(_textCountBase, confidenceValue, _textCountVariability);
 
-        Debug.Log($"calling dialogue for: {speakingRobot.name}");
-        speakingRobot.SayDialogue(dialogue.Line);
+        ActiveRobots[speakingBotIndex].SayDialogue(textCount);
+
+        int connectionChangeValue = currentCompatibilityStrength + VariabilityFunction(0,0, _connectionVariability);
+        ActiveRobots[listeningBotIndex].ReceiveConvoConnectionValueChange(connectionChangeValue);
+    }
+
+    private int RollConfidenceForOrder()
+    {
+        int robot0Confidence = ActiveRobots[0].CharacterData.Confidence;
+        int robot1Confidence = ActiveRobots[1].CharacterData.Confidence;
+
+        int confidenceBias = robot1Confidence - robot0Confidence;
+        float confidenceOdds = Mathf.InverseLerp(-10f, 10f, confidenceBias);
+
+        if (Random.value < confidenceOdds) return 1;
+        return 0;
     }
 
     public void AddActiveRobot(Robot robotToAdd)
@@ -51,18 +71,24 @@ public class DialogueManager : Singleton<DialogueManager>
         ActiveRobots.Add(robotToAdd);
     }
 
+    private int VariabilityFunction(int baseValue, int addedValue, int variability)
+    {
+        return baseValue + addedValue + Random.Range(-variability, variability);
+    }
+
     public void RemoveActiveRobot(Robot robotToRemove)
     {
         if (ActiveRobots.Count == 0) return;
         ActiveRobots.Remove(robotToRemove);
     }
-}
 
+    public int GetCompatibility(Personalites a, Personalites b)
+    {
+        int value = 0;
 
-[System.Serializable]
-public class Dialogue
-{
-    public Names SpeakerName;
-    public string Line;
+        PersonalityCompatibilityStregthDict.TryGetValue((a, b), out value);
+        PersonalityCompatibilityStregthDict.TryGetValue((b, a), out value);
 
+        return value;
+    }
 }

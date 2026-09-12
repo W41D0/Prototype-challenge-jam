@@ -8,11 +8,16 @@ public class CharacterData : ScriptableObject
 
     [Header("Personality")]
     public Personalites Personality;
-    public Personalites[] Likes;
-    public Personalites[] Dislikes;
+
 
     [Range(0,10)]
-    public int Confidence;
+    public int Confidence; //increases odds for going first and talking more
+
+    [Range(0,10)]
+    public int Patience; //threshold for how long conversation can go before start losing interest
+
+    [Range(0,10)]
+    public int Pickiness; //if Connection > Pickiness then they Vibing
 }
 
 

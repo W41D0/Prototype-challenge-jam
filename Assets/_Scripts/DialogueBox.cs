@@ -5,9 +5,10 @@ public class DialogueBox : MonoBehaviour
 {
     [SerializeField] private TextMeshPro _textField;
 
-    public void DisplayText(string outputText)
+    public void DisplayText(int textCount)
     {
-        _textField.text = outputText;
+        //take number and turn to robot gibberish
+        _textField.text = textCount.ToString();
     }
 
     public void DeleteBubble()
