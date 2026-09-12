@@ -3,76 +3,66 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
- 
-public class DialogueManager : MonoBehaviour
+using Unity.VisualScripting;
+
+public class DialogueManager : Singleton<DialogueManager>
 {
-    public static DialogueManager Instance;
- 
-    public TextMeshProUGUI characterName;
-    public TextMeshProUGUI dialogueArea;
- 
-    private Queue<DialogueLine> lines;
+    public List<Robot> ActiveRobots;
     
-    public bool isDialogueActive = false;
- 
-    public float typingSpeed = 0.2f;
- 
-    public Animator animator;
- 
-    private void Awake()
+    [Header("Testing")]
+    [SerializeField] private Dialogue[] _testDialogueLines;
+    [SerializeField] private float _testTimeBetweenLines;
+
+
+    void Start()
     {
-        if (Instance == null)
-            Instance = this;
- 
-        lines = new Queue<DialogueLine>();
+        StartCoroutine(TestDialogue());
     }
- 
-    public void StartDialogue(Dialogue dialogue)
+
+
+    private IEnumerator TestDialogue()
     {
-        isDialogueActive = true;
- 
-        animator.Play("show");
- 
-        lines.Clear();
- 
-        foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
+        foreach (Dialogue dialogueLine in _testDialogueLines)
         {
-            lines.Enqueue(dialogueLine);
+            Debug.Log($"{dialogueLine.SpeakerName.ToString()}: {dialogueLine.Line}");
+            CallDialogue(dialogueLine);
+            yield return new WaitForSeconds(_testTimeBetweenLines);
         }
- 
-        DisplayNextDialogueLine();
-    }
- 
-    public void DisplayNextDialogueLine()
+    }  
+
+    private void CallDialogue(Dialogue dialogue)
     {
-        if (lines.Count == 0)
+        Robot speakingRobot = null;
+
+        foreach (Robot robot in ActiveRobots)
         {
-            EndDialogue();
-            return;
+            if (robot.CharacterData.Name == dialogue.SpeakerName) speakingRobot = robot;
         }
- 
-        DialogueLine currentLine = lines.Dequeue();
- 
-        characterName.text = currentLine.character.name;
- 
-        StopAllCoroutines();
- 
-        StartCoroutine(TypeSentence(currentLine));
+
+        if (speakingRobot == null) return;
+
+        Debug.Log($"calling dialogue for: {speakingRobot.name}");
+        speakingRobot.SayDialogue(dialogue.Line);
     }
- 
-    IEnumerator TypeSentence(DialogueLine dialogueLine)
+
+    public void AddActiveRobot(Robot robotToAdd)
     {
-        dialogueArea.text = "";
-        foreach (char letter in dialogueLine.line.ToCharArray())
-        {
-            dialogueArea.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
-        }
+        if (ActiveRobots.Count >= 2) return;
+        ActiveRobots.Add(robotToAdd);
     }
- 
-    void EndDialogue()
+
+    public void RemoveActiveRobot(Robot robotToRemove)
     {
-        isDialogueActive = false;
-        animator.Play("hide");
+        if (ActiveRobots.Count == 0) return;
+        ActiveRobots.Remove(robotToRemove);
     }
+}
+
+
+[System.Serializable]
+public class Dialogue
+{
+    public Names SpeakerName;
+    public string Line;
+
 }
