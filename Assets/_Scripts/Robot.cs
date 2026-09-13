@@ -6,55 +6,46 @@ using NUnit.Framework;
 
 public class Robot : MonoBehaviour
 {
-
     [Header("Personality")]
     [field: SerializeField] public CharacterData CharacterData {get; private set;}
-    public int Interest {get; private set;} // declines slowly across convo if it reaches zero robot leaves (how long you're talking) /10
+    public float Interest {get; private set;} // declines slowly across convo if it reaches zero robot leaves (how long you're talking) /10
     public int Connection {get; private set;} // changes with the how the conversation is going (what youre talking about) /10
     public int Attraction {get; private set;} // once they meet first time (initial vibes) /10
 
-
-    [Header("Tweaking/Balance")]
-    [SerializeField] private int _attractionBalanceVariability;
-    [SerializeField] private int _maxInitialInterestReduction;
-    [SerializeField] private int _initialInterestAttractionVariability;
-    [SerializeField] private float _conversationLengthBalanceMultiplier;
-    [SerializeField] private float _isVibingInterestMultiplier;
-    [SerializeField] private float _hasPatienceInterestMultiplier;
-    [SerializeField] private float _lostPatienceInterestMultiplier;
-    [SerializeField] private int _maxInterest = 10;
-    [SerializeField] private int _maxConnection = 10;
-    [SerializeField] private int _maxAttraction = 10;
-
+    public bool IsVibing {get; private set;}
+    public bool LostPatience {get; private set;}
 
     [Header("References")]
     [SerializeField] private Transform _textBoxPos;
     [SerializeField] private GameObject _dialogueBubblePrefab;
 
 
-    [Header("Testing")]
-    [SerializeField] private TextMeshProUGUI _testTextOutput;
 
 
 
     private int linesReceivedCount;
     private int linesSentCount;
-
-    private bool isVibing;
-    private bool lostPatience;
+    private int seatNumber;
     private GameObject currentActiveTextBubble;
 
+    private MatchBalanceSettings BalanceSettings => DialogueManager.Instance.BalanceSettings;
 
 
-    void Start()
+    public void InitializeRobot(CharacterData characterData, int seatNum)
     {
-        DialogueManager.Instance.AddActiveRobot(this);
+        CharacterData = characterData;
+        seatNumber = seatNum;
     }
+
+    public void DestroyRobot()
+    {
+        Destroy(gameObject);
+    } 
 
     public void ReceiveMatchedRobotCompatibility(int compatibilityStrength)
     {
-        Attraction = compatibilityStrength + VariabilityFunction(0,0, _attractionBalanceVariability);
-        if (Attraction > _maxAttraction) Attraction = _maxAttraction;
+        Attraction = compatibilityStrength + VariabilityFunction(0, BalanceSettings.AttractionBalanceVariability);
+        if (Attraction > BalanceSettings.MaxAttraction) Attraction = BalanceSettings.MaxAttraction;
         if (Attraction < 0) Attraction = 0;
 
         InitialInterest();
@@ -63,25 +54,24 @@ public class Robot : MonoBehaviour
 
     private void InitialInterest()
     {
-        int variedAttraction = Attraction + VariabilityFunction(0,0, _initialInterestAttractionVariability);
-        Debug.Log($"variedAttraction: {variedAttraction}");
-        int initialInterestReduction = Mathf.RoundToInt((10-variedAttraction) / 10f * _maxInitialInterestReduction);
-        Debug.Log($"initialInterestReduction: {initialInterestReduction}");
+        int initialInterestReduction = Mathf.RoundToInt((10 - Attraction) / 10f * BalanceSettings.MaxInitialInterestReduction);
 
         Interest = 10 - initialInterestReduction;
 
-        if (Interest > _maxInterest) Interest = _maxInterest;
+        if (Interest > BalanceSettings.MaxInterest) Interest = BalanceSettings.MaxInterest;
         if (Interest < 0) Interest = 0;
     }
 
     public void ReceiveConvoConnectionValueChange(int connectionChange)
     {
         Connection += connectionChange;
-        if (Connection > _maxConnection) Connection = _maxConnection;
+        if (Connection > BalanceSettings.MaxConnection) Connection = BalanceSettings.MaxConnection;
         if (Connection < 0) Connection = 0;
 
         linesReceivedCount++;
         CalculateInterest();
+
+        if (Interest == 0) DialogueManager.Instance.RejectRobotInSeat(seatNumber);
 
         ShowValues();
     }
@@ -90,24 +80,23 @@ public class Robot : MonoBehaviour
     {
         int conversationLength = linesReceivedCount + linesSentCount;
 
-        isVibing = Connection > CharacterData.Pickiness;
-        lostPatience = ((conversationLength * _conversationLengthBalanceMultiplier) > CharacterData.Patience) && (isVibing == false);
+        IsVibing = Connection > CharacterData.Pickiness;
+        LostPatience = ((conversationLength * BalanceSettings.ConversationLengthBalanceMultiplier) > CharacterData.Patience) && (IsVibing == false);
 
-        if (isVibing)
+        if (IsVibing)
         {
-            Interest -= Mathf.FloorToInt(conversationLength * _isVibingInterestMultiplier);
+            Interest -= BalanceSettings.IsVibingInterestDecrement;
         }
-        else if (lostPatience)
+        else if (LostPatience)
         {
-            Interest -= Mathf.FloorToInt(conversationLength * _lostPatienceInterestMultiplier);
+            Interest -= BalanceSettings.LostPatienceInterestDecrement;
         }
         else
         {
-            Interest -= Mathf.FloorToInt(conversationLength * _hasPatienceInterestMultiplier);
+            Interest -= BalanceSettings.HasPatienceInterestDecrement;
         }
-        
 
-        if (Interest > _maxInterest) Interest = _maxInterest;
+        if (Interest > BalanceSettings.MaxInterest) Interest = BalanceSettings.MaxInterest;
         if (Interest < 0) Interest = 0;
     }
 
@@ -123,9 +112,9 @@ public class Robot : MonoBehaviour
         linesSentCount++;
     }
 
-    private int VariabilityFunction(int baseValue, int addedValue, int variability)
+    private int VariabilityFunction(int baseValue, int variability)
     {
-        return baseValue + addedValue + Random.Range(-variability, variability);
+        return baseValue + Random.Range(-variability, variability);
     }
 
     private void DeleteActiveTextBubble()
@@ -136,6 +125,7 @@ public class Robot : MonoBehaviour
 
     private void ShowValues()
     {
-        _testTextOutput.text = $"Interest: {Interest}\nConnection: {Connection}\nAttraction: {Attraction}\nLines Sent: {linesSentCount}\nLines Received: {linesReceivedCount}\nIsVibing: {isVibing}\nLostPatience: {lostPatience}";
+       string text = $"Interest: {Interest}\nConnection: {Connection}\nAttraction: {Attraction}\nLines Sent: {linesSentCount}\nLines Received: {linesReceivedCount}\nIsVibing: {IsVibing}\nLostPatience: {LostPatience}";
+        GameUIManager.Instance.DisplayRobotValuesTextForSeat(seatNumber, text);
     }
 }

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5171f2fbcf5a34b8ed7ca64cca9797, type: 3}
+  m_Name: BasicMatchSettings
+  m_EditorClassIdentifier: Assembly-CSharp::RobotBalanceSettings
+  TextCountBase: 10
+  TextCountVariability: 5
+  ConnectionRandomRollBaseChange: 3
+  ConnectionBaseModifier: 1
+  ConnectionVariability: 1
+  AttractionVariability: 2
+  AttractionBalanceVariability: 2
+  MaxInitialInterestReduction: 4
+  ConversationLengthBalanceMultiplier: 0.08
+  HasPatienceInterestDecrement: 0.25
+  LostPatienceInterestDecrement: 0.5
+  IsVibingInterestDecrement: 0.125
+  MaxInterest: 10
+  MaxConnection: 10
+  MaxAttraction: 10
