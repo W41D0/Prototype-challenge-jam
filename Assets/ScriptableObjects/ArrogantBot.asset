@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 595db00481f960f40a69a1604bb07c25, type: 3}
   m_Name: ArrogantBot
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  Name: ArrogantBot
+  Name: 0
   Description: i am an arrogant bot
   Personality: 0
-  Likes: 01000000
-  Dislikes: 02000000
-  Confidence: 10
+  Confidence: 9
+  Patience: 4
+  Pickiness: 6

@@ -10,12 +10,14 @@ using System.Linq;
 public class DialogueManager : Singleton<DialogueManager>
 {
     public List<Robot> ActiveRobots;
-    public Dictionary<(Personalites, Personalites), int> PersonalityCompatibilityStregthDict = new();
+    public List<PairingCompatibility> PersonalityCompatibilityStregthList = new();
     [SerializeField] private InputActionReference _continueInput;
     
     [SerializeField] private int _textCountBase;
     [SerializeField] private int _textCountVariability;
+    [SerializeField] private int _connectionBaseModifier;
     [SerializeField] private int _connectionVariability;
+    [SerializeField] private int _attractionVariability;
 
     private int currentCompatibilityStrength;
 
@@ -29,8 +31,11 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         currentCompatibilityStrength = GetCompatibility(ActiveRobots[0].CharacterData.Personality, ActiveRobots[1].CharacterData.Personality);
 
-        ActiveRobots[0].ReceiveMatchedRobotCompatibility(currentCompatibilityStrength);
-        ActiveRobots[1].ReceiveMatchedRobotCompatibility(currentCompatibilityStrength);
+        int variedCompatibility = currentCompatibilityStrength + VariabilityFunction(0,0, _attractionVariability);
+        ActiveRobots[0].ReceiveMatchedRobotCompatibility(variedCompatibility);
+
+        variedCompatibility = currentCompatibilityStrength + VariabilityFunction(0,0, _attractionVariability);
+        ActiveRobots[1].ReceiveMatchedRobotCompatibility(variedCompatibility);
     }
 
     void Update()
@@ -49,8 +54,14 @@ public class DialogueManager : Singleton<DialogueManager>
 
         ActiveRobots[speakingBotIndex].SayDialogue(textCount);
 
-        int connectionChangeValue = currentCompatibilityStrength + VariabilityFunction(0,0, _connectionVariability);
+
+        int variedCompatibility = currentCompatibilityStrength + VariabilityFunction(_connectionBaseModifier,0, _connectionVariability);
+        int connectionChangeValue = variedCompatibility * 2 - 10; //0_1 to -10_10
         ActiveRobots[listeningBotIndex].ReceiveConvoConnectionValueChange(connectionChangeValue);
+
+        variedCompatibility = currentCompatibilityStrength + VariabilityFunction(_connectionBaseModifier,0, _connectionVariability);
+        connectionChangeValue = variedCompatibility * 2 - 10;
+        ActiveRobots[speakingBotIndex].ReceiveConvoConnectionValueChange(connectionChangeValue);
     }
 
     private int RollConfidenceForOrder()
@@ -82,13 +93,27 @@ public class DialogueManager : Singleton<DialogueManager>
         ActiveRobots.Remove(robotToRemove);
     }
 
-    public int GetCompatibility(Personalites a, Personalites b)
+    int GetCompatibility(Personalites a, Personalites b)
     {
-        int value = 0;
+        foreach (PairingCompatibility pairing in PersonalityCompatibilityStregthList)
+        {
+            if ((pairing.A == a && pairing.B == b) ||
+                (pairing.A == b && pairing.B == a))
+            {
+                return pairing.Strength;
+            }
+        }
 
-        PersonalityCompatibilityStregthDict.TryGetValue((a, b), out value);
-        PersonalityCompatibilityStregthDict.TryGetValue((b, a), out value);
-
-        return value;
+        return 0;
     }
+}
+
+
+[System.Serializable]
+public class PairingCompatibility
+{
+    public Personalites A;
+    public Personalites B;
+    [Range(0, 10)]
+    public int Strength;
 }

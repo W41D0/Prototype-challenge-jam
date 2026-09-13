@@ -565,10 +565,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
   ActiveRobots: []
+  PersonalityCompatibilityStregthList:
+  - A: 0
+    B: 1
+    Strength: 8
+  - A: 0
+    B: 2
+    Strength: 3
+  - A: 0
+    B: 3
+    Strength: 4
+  - A: 1
+    B: 2
+    Strength: 3
+  - A: 1
+    B: 3
+    Strength: 6
+  - A: 2
+    B: 3
+    Strength: 8
   _continueInput: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   _textCountBase: 8
   _textCountVariability: 5
-  _connectionVariability: 2
+  _connectionBaseModifier: 1
+  _connectionVariability: 3
+  _attractionVariability: 2
 --- !u!4 &571827383
 Transform:
   m_ObjectHideFlags: 0
@@ -969,7 +990,7 @@ PrefabInstance:
     - target: {fileID: 4029370319887066296, guid: 4eef17e1dd56aa74ab3388110573c0c7, type: 3}
       propertyPath: <CharacterData>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 76c57844a316dc14b93894578a55d810, type: 2}
+      objectReference: {fileID: 11400000, guid: 61b5ae571352f5049bc1db60787a9f1b, type: 2}
     - target: {fileID: 6117763148009111249, guid: 4eef17e1dd56aa74ab3388110573c0c7, type: 3}
       propertyPath: m_Name
       value: Robot (2)

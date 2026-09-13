@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   Name: 3
   Description: me wanna slep...
-  Personality: 2
-  Likes: 02000000
-  Dislikes: 00000000
+  Personality: 3
   Confidence: 3
+  Patience: 3
+  Pickiness: 4

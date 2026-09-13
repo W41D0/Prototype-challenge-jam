@@ -15,10 +15,11 @@ public class Robot : MonoBehaviour
 
 
     [Header("Tweaking/Balance")]
-    [SerializeField] private int _likesBalanceModifier;
-    [SerializeField] private int _dislikesBalanceModifier;
-    [SerializeField] private int _conversationLengthBalanceModifier;
     [SerializeField] private int _attractionBalanceVariability;
+    [SerializeField] private int _maxInitialInterestReduction;
+    [SerializeField] private int _initialInterestAttractionVariability;
+    [SerializeField] private float _conversationLengthBalanceMultiplier;
+    [SerializeField] private float _isVibingInterestMultiplier;
     [SerializeField] private float _hasPatienceInterestMultiplier;
     [SerializeField] private float _lostPatienceInterestMultiplier;
     [SerializeField] private int _maxInterest = 10;
@@ -38,6 +39,9 @@ public class Robot : MonoBehaviour
 
     private int linesReceivedCount;
     private int linesSentCount;
+
+    private bool isVibing;
+    private bool lostPatience;
     private GameObject currentActiveTextBubble;
 
 
@@ -53,7 +57,21 @@ public class Robot : MonoBehaviour
         if (Attraction > _maxAttraction) Attraction = _maxAttraction;
         if (Attraction < 0) Attraction = 0;
 
+        InitialInterest();
         ShowValues(); 
+    }
+
+    private void InitialInterest()
+    {
+        int variedAttraction = Attraction + VariabilityFunction(0,0, _initialInterestAttractionVariability);
+        Debug.Log($"variedAttraction: {variedAttraction}");
+        int initialInterestReduction = Mathf.RoundToInt((10-variedAttraction) / 10f * _maxInitialInterestReduction);
+        Debug.Log($"initialInterestReduction: {initialInterestReduction}");
+
+        Interest = 10 - initialInterestReduction;
+
+        if (Interest > _maxInterest) Interest = _maxInterest;
+        if (Interest < 0) Interest = 0;
     }
 
     public void ReceiveConvoConnectionValueChange(int connectionChange)
@@ -72,12 +90,12 @@ public class Robot : MonoBehaviour
     {
         int conversationLength = linesReceivedCount + linesSentCount;
 
-        bool isVibing = Connection > CharacterData.Pickiness;
-        bool lostPatience = ((conversationLength + _conversationLengthBalanceModifier) > CharacterData.Patience) && (isVibing == false);
+        isVibing = Connection > CharacterData.Pickiness;
+        lostPatience = ((conversationLength * _conversationLengthBalanceMultiplier) > CharacterData.Patience) && (isVibing == false);
 
         if (isVibing)
         {
-            Interest += conversationLength;
+            Interest -= Mathf.FloorToInt(conversationLength * _isVibingInterestMultiplier);
         }
         else if (lostPatience)
         {
@@ -118,6 +136,6 @@ public class Robot : MonoBehaviour
 
     private void ShowValues()
     {
-        _testTextOutput.text = $"Interest: {Interest}\nConnection: {Connection}\nAttraction: {Attraction}\nLines Sent: {linesSentCount}\nLines Received: {linesReceivedCount}";
+        _testTextOutput.text = $"Interest: {Interest}\nConnection: {Connection}\nAttraction: {Attraction}\nLines Sent: {linesSentCount}\nLines Received: {linesReceivedCount}\nIsVibing: {isVibing}\nLostPatience: {lostPatience}";
     }
 }
