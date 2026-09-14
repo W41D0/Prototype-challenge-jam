@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using NUnit.Framework;
 
 public class GameUIManager : Singleton<GameUIManager>
 {
@@ -20,6 +21,7 @@ public class GameUIManager : Singleton<GameUIManager>
 
     [SerializeField] private GameObject _newDayButton;
     [SerializeField] private GameObject _continueButton;
+    [SerializeField] private GameObject _gamblingMenu;
     [SerializeField] private GameObject _gameOverText;
 
     [SerializeField] private TextMeshProUGUI _testTextOutput0;
@@ -39,6 +41,11 @@ public class GameUIManager : Singleton<GameUIManager>
     public void DisplayGameOver()
     {
         _gameOverText.SetActive(true);
+    }
+
+    public void ToggleGamblingMenu()
+    {
+        _gamblingMenu.SetActive(!_gamblingMenu.activeInHierarchy);
     }
 
     public void DisplayMatchPositiveGainText(int gain)

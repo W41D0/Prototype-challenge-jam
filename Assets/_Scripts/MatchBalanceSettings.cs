@@ -27,8 +27,8 @@ public class MatchBalanceSettings : ScriptableObject
     public int MaxInitialInterestReduction = 4; //Maximum possible Interest reduction from the default of 10
     public float ConversationLengthBalanceMultiplier = 0.08f; //Multiplies into conversation length before comparing to Patience
     public float HasPatienceInterestDecrement = 0.25f; //Subtracts from Interest every convo update if hasPatience 
-    public float LostPatienceInterestDecrement = 0.5f; //Subtracts from Interest every convo update if lostPatience 
-    public float IsVibingInterestDecrement = 0.125f; //Subtracts from Interest every convo update if isVibing 
+    public float IsAngryInterestDecrement = 0.5f; //Subtracts from Interest every convo update if IsAngry 
+    public float IsInLoveInterestDecrement = 0.125f; //Subtracts from Interest every convo update if IsInLove 
     public int MaxInterest = 10;
     public int MaxConnection = 10;
     public int MaxAttraction = 10;

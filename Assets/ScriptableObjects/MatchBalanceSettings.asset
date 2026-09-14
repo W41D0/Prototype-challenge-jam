@@ -15,11 +15,11 @@ MonoBehaviour:
   TotalDaysCount: 5
   PositiveMatchCoinGain: 3
   NegativeMatchCoinCost: -3
-  RobotLeaveCoinCost: -3
+  RobotQuitCoinCost: -3
   RobotRejectCoinCost: -1
   InitialMatchedCountQuota: 0200000003000000040000000400000005000000
   QuotaCoinBonus: 10
-  InitialRobotCountPerDay: 060000000700000009000000090000000a000000
+  InitialRobotCountPerDay: 0400000004000000040000000300000003000000
   TextCountBase: 10
   TextCountVariability: 5
   ConnectionRandomRollBaseChange: 3
@@ -30,8 +30,8 @@ MonoBehaviour:
   MaxInitialInterestReduction: 4
   ConversationLengthBalanceMultiplier: 0.08
   HasPatienceInterestDecrement: 0.25
-  LostPatienceInterestDecrement: 0.5
-  IsVibingInterestDecrement: 0.125
+  IsAngryInterestDecrement: 0.5
+  IsInLoveInterestDecrement: 0.125
   MaxInterest: 10
   MaxConnection: 10
   MaxAttraction: 10

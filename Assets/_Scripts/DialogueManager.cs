@@ -144,13 +144,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
         isMatching = false;
 
-        GameUIManager.Instance.DisplayRobotValuesTextForSeat(seatNum, "");
-
-        if (CanMakeNewPair() == false)
-        {
-            RobotsFinished();
-            return;
-        } 
+        GameUIManager.Instance.DisplayRobotValuesTextForSeat(seatNum, ""); 
     }
     private bool CanMakeNewPair()
     {
@@ -239,7 +233,7 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         return baseValue + Random.Range(-variability, variability);
     }
-    int GetCompatibility(Personalites a, Personalites b)
+    public int GetCompatibility(Personalites a, Personalites b)
     {
         foreach (PairingCompatibility pairing in PersonalityCompatibilityStregthList)
         {

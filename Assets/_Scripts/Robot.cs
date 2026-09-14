@@ -12,8 +12,8 @@ public class Robot : MonoBehaviour
     public int Connection {get; private set;} // changes with the how the conversation is going (what youre talking about) /10
     public int Attraction {get; private set;} // once they meet first time (initial vibes) /10
 
-    public bool IsVibing {get; private set;}
-    public bool LostPatience {get; private set;}
+    public bool IsInLove {get; private set;}
+    public bool IsAngry {get; private set;}
 
     [Header("References")]
     [SerializeField] private Transform _textBoxPos;
@@ -80,16 +80,16 @@ public class Robot : MonoBehaviour
     {
         int conversationLength = linesReceivedCount + linesSentCount;
 
-        IsVibing = Connection > CharacterData.Pickiness;
-        LostPatience = ((conversationLength * BalanceSettings.ConversationLengthBalanceMultiplier) > CharacterData.Patience) && (IsVibing == false);
+        IsInLove = Connection > CharacterData.Pickiness;
+        IsAngry = ((conversationLength * BalanceSettings.ConversationLengthBalanceMultiplier) > CharacterData.Patience) && (IsInLove == false);
 
-        if (IsVibing)
+        if (IsInLove)
         {
-            Interest -= BalanceSettings.IsVibingInterestDecrement;
+            Interest -= BalanceSettings.IsInLoveInterestDecrement;
         }
-        else if (LostPatience)
+        else if (IsAngry)
         {
-            Interest -= BalanceSettings.LostPatienceInterestDecrement;
+            Interest -= BalanceSettings.IsAngryInterestDecrement;
         }
         else
         {
@@ -125,7 +125,7 @@ public class Robot : MonoBehaviour
 
     private void ShowValues()
     {
-       string text = $"Interest: {Interest}\nConnection: {Connection}\nAttraction: {Attraction}\nLines Sent: {linesSentCount}\nLines Received: {linesReceivedCount}\nIsVibing: {IsVibing}\nLostPatience: {LostPatience}";
+       string text = $"Interest: {Interest}\nConnection: {Connection}\nAttraction: {Attraction}\nLines Sent: {linesSentCount}\nLines Received: {linesReceivedCount}\nIsInLove: {IsInLove}\nIsAngry: {IsAngry}";
         GameUIManager.Instance.DisplayRobotValuesTextForSeat(seatNumber, text);
     }
 }
