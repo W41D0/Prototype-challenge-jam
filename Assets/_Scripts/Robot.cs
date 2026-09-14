@@ -28,7 +28,7 @@ public class Robot : MonoBehaviour
     private int seatNumber;
     private GameObject currentActiveTextBubble;
 
-    private MatchBalanceSettings BalanceSettings => DialogueManager.Instance.BalanceSettings;
+    private MatchBalanceSettings BalanceSettings => DayManager.Instance.BalanceSettings;
 
 
     public void InitializeRobot(CharacterData characterData, int seatNum)
@@ -71,7 +71,7 @@ public class Robot : MonoBehaviour
         linesReceivedCount++;
         CalculateInterest();
 
-        if (Interest == 0) DialogueManager.Instance.RejectRobotInSeat(seatNumber);
+        if (Interest == 0) DialogueManager.Instance.RobotQuitInSeat(seatNumber);
 
         ShowValues();
     }

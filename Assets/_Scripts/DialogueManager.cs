@@ -9,8 +9,11 @@ using System.Linq;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
+    
     public Dictionary<int, Robot> ActiveRobotsDict = new ();
     public List<PairingCompatibility> PersonalityCompatibilityStregthList = new();
+
+    [Header("References")]
     [SerializeField] private InputActionReference _continueInput;
     
     [SerializeField] private List<CharacterData> _spawnableRobots;
@@ -22,73 +25,143 @@ public class DialogueManager : Singleton<DialogueManager>
     [SerializeField] private TextMeshProUGUI _testTextOutput0;
     [SerializeField] private TextMeshProUGUI _testTextOutput1;
 
-    [Header("Balance Settings")]
-    public MatchBalanceSettings BalanceSettings;
- 
+    //Local Variables
+    private MatchBalanceSettings BalanceSettings => DayManager.Instance.BalanceSettings;
+    private int CurrentCoins => DayManager.Instance.Coins;
     private int currentCompatibilityStrength;
-    private bool startedGame;
     private bool isMatching;
 
     private bool seat0Taken;
     private bool seat1Taken;
 
     private int rejectedCount;
+    private int quitCount;
     private int matchedCount;
+    private int robotsLeft;
 
-    void Start()
-    {
-        
-    }
+
+
+
     void Update()
     {
-        bool pressedContinue = _continueInput.action.WasPressedThisFrame();
-
-        if (pressedContinue && isMatching && startedGame) CallNextDialogue();
-        else if (pressedContinue && !isMatching && startedGame) StartGame();
-        else if (pressedContinue && !isMatching && !startedGame) StartGame();
+        if (_continueInput.action.WasPressedThisFrame()) PressedContinue();
     }
 
-    public void StartGame()
+    public void PressedContinue()
     {
-        SpawnRobotInEmptySeat(_spawnableRobots[Random.Range(0, _spawnableRobots.Count - 1)]);
-        SpawnRobotInEmptySeat(_spawnableRobots[Random.Range(0, _spawnableRobots.Count - 1)]);
-        
-        startedGame = true;
-        StartDate();
+        if (isMatching && DayManager.Instance.DayStarted) CallNextDialogue();
+        else if (!isMatching && DayManager.Instance.DayStarted) StartNewDate();
     }
 
-    public void StartDate()
+    public void StartDaySetup(int initialRobotCount)
     {
+        robotsLeft = initialRobotCount;
+        GameUIManager.Instance.DisplayRobotsLeftText(robotsLeft);
+
+        StartNewDate();
+    }
+
+    public void StartNewDate()
+    {
+        if (CanMakeNewPair() == false)
+        {
+            RobotsFinished();
+            return;
+        } 
+
+        TrySpawnRobotInEmptySeat(_spawnableRobots[Random.Range(0, _spawnableRobots.Count - 1)]);
+        TrySpawnRobotInEmptySeat(_spawnableRobots[Random.Range(0, _spawnableRobots.Count - 1)]);
+
         InitializeRobots();
         isMatching = true;
     }
 
-    public void MatchRobotPairing()
+    public void RobotsFinished()
+    {
+        if (seat0Taken) RemoveRobotFromSeat(0);
+        if (seat1Taken) RemoveRobotFromSeat(1);
+
+        DayManager.Instance.EndDay(matchedCount);
+        
+        rejectedCount = 0;
+        quitCount = 0;
+        matchedCount = 0;
+        robotsLeft = 0;
+
+        GameUIManager.Instance.DisplayRejectedCountText(rejectedCount);
+        GameUIManager.Instance.DisplayQuitCountText(quitCount);
+        GameUIManager.Instance.DisplayRobotsLeftText(robotsLeft);
+        GameUIManager.Instance.DisplayRobotValuesTextForSeat(0, "");
+        GameUIManager.Instance.DisplayRobotValuesTextForSeat(1, "");
+    }
+
+    public void MatchRobotPairing() //Called By Button
     {
         if (ActiveRobotsDict.TryGetValue(0, out Robot robotInSeat0) == false) return;
         if (ActiveRobotsDict.TryGetValue(1, out Robot robotInSeat1) == false) return;
 
-        robotInSeat0.DestroyRobot();
-        RemoveActiveRobot(0);
-        robotInSeat1.DestroyRobot();
-        RemoveActiveRobot(1);
+        RemoveRobotFromSeat(0);
+        RemoveRobotFromSeat(1);
+
+        DayManager.Instance.UpdateCoins(BalanceSettings.PositiveMatchCoinGain);
 
         matchedCount++;
-        GameUIManager.Instance.DisplayMatchedCount(matchedCount);
+        GameUIManager.Instance.DisplayMatchedAndQuotaCountText(matchedCount, DayManager.Instance.MatchedQuota);
     }
 
     public void RejectRobotInSeat(int seatNum)
     {
-        if (ActiveRobotsDict.TryGetValue(seatNum, out Robot robotInSeat) == false) return; 
-
-        robotInSeat.DestroyRobot();
-        RemoveActiveRobot(seatNum);
+        if (ActiveRobotsDict.TryGetValue(seatNum, out Robot robotInSeat) == false) return;
+        RemoveRobotFromSeat(seatNum);
 
         rejectedCount++;
-        GameUIManager.Instance.DisplayRejectedCount(rejectedCount);
+        GameUIManager.Instance.DisplayRejectedCountText(rejectedCount);
+
+        DayManager.Instance.UpdateCoins(BalanceSettings.RobotRejectCoinCost);
     }
 
-    private void SpawnRobotInEmptySeat(CharacterData robotCharacterData)
+    public void RobotQuitInSeat(int seatNum)
+    {
+        if (CurrentCoins < BalanceSettings.RobotQuitCoinCost) return;
+
+        RemoveRobotFromSeat(seatNum);
+
+        quitCount++;
+        GameUIManager.Instance.DisplayQuitCountText(quitCount);
+
+        DayManager.Instance.UpdateCoins(BalanceSettings.RobotQuitCoinCost);
+    }
+
+    private void RemoveRobotFromSeat(int seatNum)
+    {
+        if (ActiveRobotsDict.TryGetValue(seatNum, out Robot robotInSeat) == false) return;
+
+        ActiveRobotsDict.Remove(seatNum);
+        robotInSeat.DestroyRobot();
+
+        if (seatNum == 0) seat0Taken = false;
+        else if (seatNum == 1) seat1Taken = false;
+
+        isMatching = false;
+
+        GameUIManager.Instance.DisplayRobotValuesTextForSeat(seatNum, "");
+
+        if (CanMakeNewPair() == false)
+        {
+            RobotsFinished();
+            return;
+        } 
+    }
+    private bool CanMakeNewPair()
+    {
+        if (robotsLeft >= 2) return true;
+        if ((robotsLeft == 1) && (ActiveRobotsDict.Count != 0)) return true;
+
+        return false;
+    }
+
+
+    private void TrySpawnRobotInEmptySeat(CharacterData robotCharacterData)
     {
         if (!seat0Taken)
         {
@@ -97,6 +170,9 @@ public class DialogueManager : Singleton<DialogueManager>
             seat0Taken = true;
 
             ActiveRobotsDict.Add(0, robot.GetComponent<Robot>());
+
+            robotsLeft--;
+            GameUIManager.Instance.DisplayRobotsLeftText(robotsLeft);
         } 
         else if (!seat1Taken)
         {
@@ -105,18 +181,10 @@ public class DialogueManager : Singleton<DialogueManager>
             seat1Taken = true;
 
             ActiveRobotsDict.Add(1, robot.GetComponent<Robot>());
+
+            robotsLeft--;
+            GameUIManager.Instance.DisplayRobotsLeftText(robotsLeft);
         }
-    }
-
-    public void RemoveActiveRobot(int seatNum)
-    {
-        if (ActiveRobotsDict.Count == 0) return;
-        ActiveRobotsDict.Remove(seatNum);
-
-        if (seatNum == 0) seat0Taken = false;
-        else if (seatNum == 1) seat1Taken = false;
-
-        isMatching = false;
     }
 
     private void InitializeRobots()
@@ -130,7 +198,7 @@ public class DialogueManager : Singleton<DialogueManager>
         ActiveRobotsDict[1].ReceiveMatchedRobotCompatibility(variedCompatibility);
     }
 
-    private void CallNextDialogue()
+    public void CallNextDialogue()
     {
         if (ActiveRobotsDict.Count != 2) return;
 
