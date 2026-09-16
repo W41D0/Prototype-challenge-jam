@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine.UI;
 using System.Linq;
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 public class Robot : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class Robot : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform _textBoxPos;
     [SerializeField] private GameObject _dialogueBubblePrefab;
+    [SerializeField] private List<Sprite> _orderedExpressionSprites;
 
 
 
@@ -27,14 +30,21 @@ public class Robot : MonoBehaviour
     private int linesSentCount;
     private int seatNumber;
     private GameObject currentActiveTextBubble;
+    private SpriteRenderer sr;
 
     private MatchBalanceSettings BalanceSettings => DayManager.Instance.BalanceSettings;
+
+
 
 
     public void InitializeRobot(CharacterData characterData, int seatNum)
     {
         CharacterData = characterData;
         seatNumber = seatNum;
+
+
+        sr = gameObject.GetComponent<SpriteRenderer>();
+        if (seatNumber == 1) sr.flipX = true;
     }
 
     public void DestroyRobot()
@@ -71,7 +81,9 @@ public class Robot : MonoBehaviour
         linesReceivedCount++;
         CalculateInterest();
 
-        if (Interest == 0) DialogueManager.Instance.RobotQuitInSeat(seatNumber);
+        if (Interest == 0) DialogueManager.Instance.RobotQuitInSeat();
+
+        Expression(Connection);
 
         ShowValues();
     }
@@ -105,11 +117,19 @@ public class Robot : MonoBehaviour
         if (currentActiveTextBubble != null) DeleteActiveTextBubble();
 
         GameObject textBubble = Instantiate(_dialogueBubblePrefab, _textBoxPos.position, Quaternion.identity, _textBoxPos);
-        textBubble.GetComponent<DialogueBox>().DisplayText(textCount);
+        textBubble.GetComponent<DialogueBox>().DisplayText(textCount, Connection, CharacterData.Confidence);
 
         currentActiveTextBubble = textBubble;
 
         linesSentCount++;
+    }
+
+    private void Expression(int connection)
+    {
+        int expressionIndex = Mathf.RoundToInt(connection * (_orderedExpressionSprites.Count-1) / 10) + VariabilityFunction(0, BalanceSettings.ExpressionConnectionVariability);
+        expressionIndex = Mathf.Clamp(expressionIndex, 0, _orderedExpressionSprites.Count-1);
+        
+        sr.sprite = _orderedExpressionSprites[expressionIndex];
     }
 
     private int VariabilityFunction(int baseValue, int variability)

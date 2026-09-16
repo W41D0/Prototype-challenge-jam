@@ -43,15 +43,17 @@ public class DayManager : Singleton<DayManager>
     public void StartNewDay() //Called by button
     {
         MatchedQuota = BalanceSettings.InitialMatchedCountQuota[CurrentDayNum];
+        Coins = BalanceSettings.InititalCoinAmount;
 
-        CurrentDayNum++;
         DialogueManager.Instance.StartDaySetup(BalanceSettings.InitialRobotCountPerDay[CurrentDayNum]);
+        CurrentDayNum++;
 
         GameUIManager.Instance.ToggleNewDayButton(false);
         GameUIManager.Instance.ToggleContinueButton(true);
 
         GameUIManager.Instance.DisplayDaysLeftText(BalanceSettings.TotalDaysCount - CurrentDayNum + 1); // includes current day
         GameUIManager.Instance.DisplayMatchedAndQuotaCountText(0, MatchedQuota);
+        GameUIManager.Instance.DisplayCoinsCountText(Coins);
         GameUIManager.Instance.DisplayRejectCostText(BalanceSettings.RobotRejectCoinCost);
         GameUIManager.Instance.DisplayMatchPositiveGainText(BalanceSettings.PositiveMatchCoinGain);
         GameUIManager.Instance.DisplayMatchNegativeCostText(BalanceSettings.NegativeMatchCoinCost);
@@ -68,5 +70,7 @@ public class DayManager : Singleton<DayManager>
     {
         Coins += coinChange;
         GameUIManager.Instance.DisplayCoinsCountText(Coins);
+
+        if (Coins <= 0) DialogueManager.Instance.RobotsFinished();
     }
 }

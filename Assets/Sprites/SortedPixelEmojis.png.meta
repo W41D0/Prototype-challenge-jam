@@ -1,0 +1,1406 @@
+fileFormatVersion: 2
+guid: 1cbea93a4055ec140b6bf0d342a3796d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3085552548181655696
+    second: SortedPixelEmojis_0
+  - first:
+      213: 1049807503337913295
+    second: SortedPixelEmojis_1
+  - first:
+      213: -8579531991176999627
+    second: SortedPixelEmojis_2
+  - first:
+      213: 5227826410691979083
+    second: SortedPixelEmojis_3
+  - first:
+      213: -490369574806818552
+    second: SortedPixelEmojis_4
+  - first:
+      213: 575644736522964124
+    second: SortedPixelEmojis_5
+  - first:
+      213: -2161562740627357516
+    second: SortedPixelEmojis_6
+  - first:
+      213: -797282967869727059
+    second: SortedPixelEmojis_7
+  - first:
+      213: 342479782416544330
+    second: SortedPixelEmojis_8
+  - first:
+      213: -1717378773618024577
+    second: SortedPixelEmojis_9
+  - first:
+      213: 6196391862975628538
+    second: SortedPixelEmojis_10
+  - first:
+      213: 88953953442452666
+    second: SortedPixelEmojis_11
+  - first:
+      213: -319403563113631873
+    second: SortedPixelEmojis_12
+  - first:
+      213: 7337183404297543385
+    second: SortedPixelEmojis_13
+  - first:
+      213: 2275815674840897111
+    second: SortedPixelEmojis_14
+  - first:
+      213: -783848865411666661
+    second: SortedPixelEmojis_15
+  - first:
+      213: 39351460002675224
+    second: SortedPixelEmojis_16
+  - first:
+      213: 2494149686167640248
+    second: SortedPixelEmojis_17
+  - first:
+      213: -3735107091227631811
+    second: SortedPixelEmojis_18
+  - first:
+      213: -1348000698138469390
+    second: SortedPixelEmojis_19
+  - first:
+      213: 1044182561586037823
+    second: SortedPixelEmojis_20
+  - first:
+      213: -9084361030621123251
+    second: SortedPixelEmojis_21
+  - first:
+      213: 8666231394066692281
+    second: SortedPixelEmojis_22
+  - first:
+      213: 3330933316199034721
+    second: SortedPixelEmojis_23
+  - first:
+      213: -598694144413121834
+    second: SortedPixelEmojis_24
+  - first:
+      213: 6635227781681021640
+    second: SortedPixelEmojis_25
+  - first:
+      213: 5396852172302486687
+    second: SortedPixelEmojis_26
+  - first:
+      213: -4201835901365688671
+    second: SortedPixelEmojis_27
+  - first:
+      213: 6835697090771287313
+    second: SortedPixelEmojis_28
+  - first:
+      213: 3232134009202901457
+    second: SortedPixelEmojis_29
+  - first:
+      213: -6173596261175729838
+    second: SortedPixelEmojis_30
+  - first:
+      213: -3506620752213108642
+    second: SortedPixelEmojis_31
+  - first:
+      213: 3812385149776157704
+    second: SortedPixelEmojis_32
+  - first:
+      213: -7073568814443381031
+    second: SortedPixelEmojis_33
+  - first:
+      213: 1331980764867370380
+    second: SortedPixelEmojis_34
+  - first:
+      213: 2222009055810013573
+    second: SortedPixelEmojis_35
+  - first:
+      213: 6826636530530736225
+    second: SortedPixelEmojis_36
+  - first:
+      213: 8763809786922906607
+    second: SortedPixelEmojis_37
+  - first:
+      213: -4489122564049684325
+    second: SortedPixelEmojis_38
+  - first:
+      213: -8353020682164087554
+    second: SortedPixelEmojis_39
+  - first:
+      213: 5633972004487816365
+    second: SortedPixelEmojis_40
+  - first:
+      213: 1504361275824098192
+    second: SortedPixelEmojis_41
+  - first:
+      213: -7256348128129853598
+    second: SortedPixelEmojis_42
+  - first:
+      213: -2668970060114425370
+    second: SortedPixelEmojis_43
+  - first:
+      213: 1712277477003441230
+    second: SortedPixelEmojis_44
+  - first:
+      213: -2939152745297908931
+    second: SortedPixelEmojis_45
+  - first:
+      213: -3177000616937965535
+    second: SortedPixelEmojis_46
+  - first:
+      213: 6975933574235815120
+    second: SortedPixelEmojis_47
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SortedPixelEmojis_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07fb4dd2e4aed25d0800000000000000
+      internalID: -3085552548181655696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_1
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcbfef6bc5aa19e00800000000000000
+      internalID: 1049807503337913295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_2
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53d8bce3c116fe880800000000000000
+      internalID: -8579531991176999627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_3
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4763bc1c68fc8840800000000000000
+      internalID: 5227826410691979083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 801faf4487bd139f0800000000000000
+      internalID: -490369574806818552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_5
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9c464586d91df700800000000000000
+      internalID: 575644736522964124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_6
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b0cf2dc3269002e0800000000000000
+      internalID: -2161562740627357516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_7
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daed7aa6d5b7fe4f0800000000000000
+      internalID: -797282967869727059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a42f0bd2c8bb0c400800000000000000
+      internalID: 342479782416544330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_9
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7f93bdba15aa28e0800000000000000
+      internalID: -1717378773618024577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_10
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af488c9c1910ef550800000000000000
+      internalID: 6196391862975628538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_11
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab4dd4c36270c3100800000000000000
+      internalID: 88953953442452666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_12
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7f2e90d620419bf0800000000000000
+      internalID: -319403563113631873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_13
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dedb01ae69e2d560800000000000000
+      internalID: 7337183404297543385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_14
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75658296c42559f10800000000000000
+      internalID: 2275815674840897111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_15
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 25
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1d6b832c953f15f0800000000000000
+      internalID: -783848865411666661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81a3ad2c1fdcb8000800000000000000
+      internalID: 39351460002675224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_17
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b89caccceffc9220800000000000000
+      internalID: 2494149686167640248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_18
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3f9555d3eb3a2cc0800000000000000
+      internalID: -3735107091227631811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_19
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fb5a7ec180fa4de0800000000000000
+      internalID: -1348000698138469390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_20
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f344ef7e18ead7e00800000000000000
+      internalID: 1044182561586037823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_21
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4d2d6e06cddde180800000000000000
+      internalID: -9084361030621123251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_22
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b8fea88983a44870800000000000000
+      internalID: 8666231394066692281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_23
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16fae8af33ad93e20800000000000000
+      internalID: 3330933316199034721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_24
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d2462109d201b7f0800000000000000
+      internalID: -598694144413121834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_25
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c286e23380151c50800000000000000
+      internalID: 6635227781681021640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_26
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9c826bf47875ea40800000000000000
+      internalID: 5396852172302486687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_27
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a66d9e828410b5c0800000000000000
+      internalID: -4201835901365688671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_28
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11df79779464dde50800000000000000
+      internalID: 6835697090771287313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_29
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d18ffcb1c8dadc20800000000000000
+      internalID: 3232134009202901457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_30
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 251e0f9d8eaf25aa0800000000000000
+      internalID: -6173596261175729838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_31
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 13
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e581356310bf55fc0800000000000000
+      internalID: -3506620752213108642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80cd167481058e430800000000000000
+      internalID: 3812385149776157704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_33
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9de32d004a2a5dd90800000000000000
+      internalID: -7073568814443381031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_34
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8d9291d2752c7210800000000000000
+      internalID: 1331980764867370380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_35
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 589c14ba67926de10800000000000000
+      internalID: 2222009055810013573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_36
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1685df461c51dbe50800000000000000
+      internalID: 6826636530530736225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_37
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe3b1ac819e4f9970800000000000000
+      internalID: 8763809786922906607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_38
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b98b0a8ffce63b1c0800000000000000
+      internalID: -4489122564049684325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_39
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef45e1e12fb141c80800000000000000
+      internalID: -8353020682164087554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_40
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da4edf120b3ef2e40800000000000000
+      internalID: 5633972004487816365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_41
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09b49532c9090e410800000000000000
+      internalID: 1504361275824098192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_42
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 267df30c2d54c4b90800000000000000
+      internalID: -7256348128129853598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_43
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e90ab20fd9e5fad0800000000000000
+      internalID: -2668970060114425370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_44
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4431b51b4b33c710800000000000000
+      internalID: 1712277477003441230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_45
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3b67e386280637d0800000000000000
+      internalID: -2939152745297908931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_46
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 128373875c609e3d0800000000000000
+      internalID: -3177000616937965535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SortedPixelEmojis_47
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 1
+        width: 11
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dcfb0d20ae7fc060800000000000000
+      internalID: 6975933574235815120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 4db8eff44baae7444a7e933590dae827
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":11.0,"y":11.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":1.0,"y":1.0},"pivot":{"x":0.0,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":6,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      SortedPixelEmojis_0: -3085552548181655696
+      SortedPixelEmojis_1: 1049807503337913295
+      SortedPixelEmojis_10: 6196391862975628538
+      SortedPixelEmojis_11: 88953953442452666
+      SortedPixelEmojis_12: -319403563113631873
+      SortedPixelEmojis_13: 7337183404297543385
+      SortedPixelEmojis_14: 2275815674840897111
+      SortedPixelEmojis_15: -783848865411666661
+      SortedPixelEmojis_16: 39351460002675224
+      SortedPixelEmojis_17: 2494149686167640248
+      SortedPixelEmojis_18: -3735107091227631811
+      SortedPixelEmojis_19: -1348000698138469390
+      SortedPixelEmojis_2: -8579531991176999627
+      SortedPixelEmojis_20: 1044182561586037823
+      SortedPixelEmojis_21: -9084361030621123251
+      SortedPixelEmojis_22: 8666231394066692281
+      SortedPixelEmojis_23: 3330933316199034721
+      SortedPixelEmojis_24: -598694144413121834
+      SortedPixelEmojis_25: 6635227781681021640
+      SortedPixelEmojis_26: 5396852172302486687
+      SortedPixelEmojis_27: -4201835901365688671
+      SortedPixelEmojis_28: 6835697090771287313
+      SortedPixelEmojis_29: 3232134009202901457
+      SortedPixelEmojis_3: 5227826410691979083
+      SortedPixelEmojis_30: -6173596261175729838
+      SortedPixelEmojis_31: -3506620752213108642
+      SortedPixelEmojis_32: 3812385149776157704
+      SortedPixelEmojis_33: -7073568814443381031
+      SortedPixelEmojis_34: 1331980764867370380
+      SortedPixelEmojis_35: 2222009055810013573
+      SortedPixelEmojis_36: 6826636530530736225
+      SortedPixelEmojis_37: 8763809786922906607
+      SortedPixelEmojis_38: -4489122564049684325
+      SortedPixelEmojis_39: -8353020682164087554
+      SortedPixelEmojis_4: -490369574806818552
+      SortedPixelEmojis_40: 5633972004487816365
+      SortedPixelEmojis_41: 1504361275824098192
+      SortedPixelEmojis_42: -7256348128129853598
+      SortedPixelEmojis_43: -2668970060114425370
+      SortedPixelEmojis_44: 1712277477003441230
+      SortedPixelEmojis_45: -2939152745297908931
+      SortedPixelEmojis_46: -3177000616937965535
+      SortedPixelEmojis_47: 6975933574235815120
+      SortedPixelEmojis_5: 575644736522964124
+      SortedPixelEmojis_6: -2161562740627357516
+      SortedPixelEmojis_7: -797282967869727059
+      SortedPixelEmojis_8: 342479782416544330
+      SortedPixelEmojis_9: -1717378773618024577
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

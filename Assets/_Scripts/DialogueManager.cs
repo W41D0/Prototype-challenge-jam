@@ -7,11 +7,17 @@ using Unity.VisualScripting;
 using UnityEngine.InputSystem;
 using System.Linq;
 
+
 public class DialogueManager : Singleton<DialogueManager>
 {
     
     public Dictionary<int, Robot> ActiveRobotsDict = new ();
     public List<PairingCompatibility> PersonalityCompatibilityStregthList = new();
+
+    [Header("Text Lines")]
+    public int OrderedEmojisCount;
+    public string RandomCharSymbols;
+    
 
     [Header("References")]
     [SerializeField] private InputActionReference _continueInput;
@@ -37,17 +43,37 @@ public class DialogueManager : Singleton<DialogueManager>
     private int rejectedCount;
     private int quitCount;
     private int matchedCount;
+    private int goodMatchesCount;
     private int robotsLeft;
+
+    private bool isPaused;
+
+    private float dialogueTimer;
 
 
 
 
     void Update()
     {
-        if (_continueInput.action.WasPressedThisFrame()) PressedContinue();
+        if (_continueInput.action.WasPressedThisFrame()) ToggleDialogue();
+
+        if (!isPaused && dialogueTimer > 0)
+        {
+            dialogueTimer -= Time.deltaTime;
+        }
+        else if (dialogueTimer <= 0)
+        {
+            PressedContinue();
+            dialogueTimer = BalanceSettings.TimeBetweenLines;
+        }
     }
 
-    public void PressedContinue()
+    public void ToggleDialogue()
+    {
+        isPaused = !isPaused;
+    }
+
+    private void PressedContinue()
     {
         if (isMatching && DayManager.Instance.DayStarted) CallNextDialogue();
         else if (!isMatching && DayManager.Instance.DayStarted) StartNewDate();
@@ -57,8 +83,15 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         robotsLeft = initialRobotCount;
         GameUIManager.Instance.DisplayRobotsLeftText(robotsLeft);
+        isPaused = true;
+        dialogueTimer = BalanceSettings.TimeBetweenLines;
 
         StartNewDate();
+    }
+
+    private IEnumerator DialogueLoop()
+    {
+        yield return new WaitForSeconds(BalanceSettings.TimeBetweenLines);
     }
 
     public void StartNewDate()
@@ -86,6 +119,7 @@ public class DialogueManager : Singleton<DialogueManager>
         rejectedCount = 0;
         quitCount = 0;
         matchedCount = 0;
+        goodMatchesCount = 0;
         robotsLeft = 0;
 
         GameUIManager.Instance.DisplayRejectedCountText(rejectedCount);
@@ -95,10 +129,36 @@ public class DialogueManager : Singleton<DialogueManager>
         GameUIManager.Instance.DisplayRobotValuesTextForSeat(1, "");
     }
 
+    public bool IsGoodMatch()
+    {
+        if (ActiveRobotsDict[0].IsInLove && ActiveRobotsDict[1].IsInLove) return true;
+        return false;
+    }
+
+    public bool SomeoneIsInLove()
+    {
+        if (ActiveRobotsDict[0].IsInLove || ActiveRobotsDict[1].IsInLove) return true;
+        return false;
+    }
+
+    public bool IsOneSided()
+    {
+        if (SomeoneIsInLove() && !IsGoodMatch()) return true;
+        return false;
+    }
+
     public void MatchRobotPairing() //Called By Button
     {
         if (ActiveRobotsDict.TryGetValue(0, out Robot robotInSeat0) == false) return;
         if (ActiveRobotsDict.TryGetValue(1, out Robot robotInSeat1) == false) return;
+
+        if (IsGoodMatch())
+        {
+            goodMatchesCount++;
+            VoiceManager.Instance.ThinkTwoSidedPositive();
+        } 
+        else if (IsOneSided()) VoiceManager.Instance.ThinkOneSidedNegative();
+        else VoiceManager.Instance.ThinkTwoSidedNegative();
 
         RemoveRobotFromSeat(0);
         RemoveRobotFromSeat(1);
@@ -109,10 +169,18 @@ public class DialogueManager : Singleton<DialogueManager>
         GameUIManager.Instance.DisplayMatchedAndQuotaCountText(matchedCount, DayManager.Instance.MatchedQuota);
     }
 
-    public void RejectRobotInSeat(int seatNum)
+    public void RejectRobots()
     {
-        if (ActiveRobotsDict.TryGetValue(seatNum, out Robot robotInSeat) == false) return;
-        RemoveRobotFromSeat(seatNum);
+        if (CurrentCoins < -BalanceSettings.RobotRejectCoinCost) return;
+
+        if (ActiveRobotsDict.TryGetValue(0, out Robot robotInSeat0) == false) return;
+        if (ActiveRobotsDict.TryGetValue(1, out Robot robotInSeat1) == false) return;
+
+        if (SomeoneIsInLove()) VoiceManager.Instance.ThinkRejectNegative();
+        else VoiceManager.Instance.ThinkRejectPositive();
+
+        RemoveRobotFromSeat(0);
+        RemoveRobotFromSeat(1);
 
         rejectedCount++;
         GameUIManager.Instance.DisplayRejectedCountText(rejectedCount);
@@ -120,11 +188,12 @@ public class DialogueManager : Singleton<DialogueManager>
         DayManager.Instance.UpdateCoins(BalanceSettings.RobotRejectCoinCost);
     }
 
-    public void RobotQuitInSeat(int seatNum)
+    public void RobotQuitInSeat()
     {
-        if (CurrentCoins < BalanceSettings.RobotQuitCoinCost) return;
+        VoiceManager.Instance.ThinkQuitNegative();
 
-        RemoveRobotFromSeat(seatNum);
+        RemoveRobotFromSeat(0);
+        RemoveRobotFromSeat(1);
 
         quitCount++;
         GameUIManager.Instance.DisplayQuitCountText(quitCount);
@@ -194,7 +263,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void CallNextDialogue()
     {
-        if (ActiveRobotsDict.Count != 2) return;
+        if (ActiveRobotsDict.TryGetValue(0, out Robot robotInSeat) == false) return;
+        if (ActiveRobotsDict.TryGetValue(1, out robotInSeat) == false) return;
 
         int speakingBotIndex = RollConfidenceForOrder();
         int listeningBotIndex = (speakingBotIndex == 0) ? 1 : 0;
@@ -209,6 +279,9 @@ public class DialogueManager : Singleton<DialogueManager>
         int randomRoll = Mathf.RoundToInt(Random.Range(-BalanceSettings.ConnectionRandomRollBaseChange, BalanceSettings.ConnectionRandomRollBaseChange));
         randomRoll += VariabilityFunction(BalanceSettings.ConnectionBaseModifier, BalanceSettings.ConnectionVariability);
         ActiveRobotsDict[listeningBotIndex].ReceiveConvoConnectionValueChange(randomRoll);
+
+        if (ActiveRobotsDict.TryGetValue(0, out robotInSeat) == false) return;
+        if (ActiveRobotsDict.TryGetValue(1, out robotInSeat) == false) return;
 
         randomRoll = Mathf.RoundToInt(Random.Range(-BalanceSettings.ConnectionRandomRollBaseChange, BalanceSettings.ConnectionRandomRollBaseChange));
         randomRoll += VariabilityFunction(BalanceSettings.ConnectionBaseModifier, BalanceSettings.ConnectionVariability);
@@ -245,11 +318,6 @@ public class DialogueManager : Singleton<DialogueManager>
         }
 
         return 0;
-    }
-
-    float RemapRange(float value, Vector2 oldRange, Vector2 newRange)
-    {
-        return newRange.x + (value - oldRange.x) / (oldRange.y - oldRange.x) * (newRange.y - newRange.x);
     }
 }
 

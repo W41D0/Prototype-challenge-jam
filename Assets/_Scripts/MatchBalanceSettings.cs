@@ -4,10 +4,11 @@ using UnityEngine;
 public class MatchBalanceSettings : ScriptableObject
 {
     [Header("Game Settings")]
-    public int TotalDaysCount = 5;
-    public int PositiveMatchCoinGain = 3;
-    public int NegativeMatchCoinCost = -3;
-    public int RobotQuitCoinCost = -3;
+    public int TotalDaysCount = 1;
+    public int InititalCoinAmount = 5;
+    public int PositiveMatchCoinGain = 2;
+    public int NegativeMatchCoinCost = -2;
+    public int RobotQuitCoinCost = -1;
     public int RobotRejectCoinCost = -1;
     public int[] InitialMatchedCountQuota = new int[5] {2,3,4,4,5};
     public int QuotaCoinBonus = 10;
@@ -15,6 +16,7 @@ public class MatchBalanceSettings : ScriptableObject
 
 
     [Header("Pair Settings")]
+    public float TimeBetweenLines = 0.75f;
     public int TextCountBase = 10; //Base amount of characters in gibberish before adding Confidence
     public int TextCountVariability = 5; //Changes TextCountBase by random num between [-value,value]
     public int ConnectionRandomRollBaseChange = 3; //Random roll from [-value,value] that offsets robot Connection every convo update (value before Modifer and Variability)
@@ -23,6 +25,10 @@ public class MatchBalanceSettings : ScriptableObject
     public int AttractionVariability = 2; //Changes Attraction by random num between -value,value
 
     [Header("Robot Settings")]
+    public int EmojiConfidenceThresholdMultiplier = 2; //Changes threshold for random roll against Confidence
+    public int EmojiConnectionVariability; //Varies the strength of emoji used by random num between [-value,value]
+    public bool EmojiOnly; //Varies the strength of emoji used by random num between [-value,value]
+    public int ExpressionConnectionVariability; //Varies the strength of expressions used by random num between [-value,value]
     public int AttractionBalanceVariability = 2; //Changes Attraction by random num between [-value,value]
     public int MaxInitialInterestReduction = 4; //Maximum possible Interest reduction from the default of 10
     public float ConversationLengthBalanceMultiplier = 0.08f; //Multiplies into conversation length before comparing to Patience

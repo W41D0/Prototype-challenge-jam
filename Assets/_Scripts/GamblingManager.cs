@@ -49,11 +49,17 @@ public class GamblingManager : Singleton<GamblingManager>
         {
             Debug.Log($"correct it was {input}");
             DayManager.Instance.UpdateCoins(question.Reward);
+
+            if (question.IsCompleteLuck) VoiceManager.Instance.ThinkGamblingDecisionPositive();
+            else VoiceManager.Instance.ThinkQuestionDecisionPositive();
         }
         else if (AnswerGamblingQuestion(question) != input) 
         {
             Debug.Log($"incorrect it was {!input}");
             DayManager.Instance.UpdateCoins(question.Fine);
+
+            if (question.IsCompleteLuck) VoiceManager.Instance.ThinkGamblingDecisionNegative();
+            else VoiceManager.Instance.ThinkQuestionDecisionNegative();
         }
     }
 
@@ -123,6 +129,7 @@ public class GamblingQuestion
     public int Reward;
     public int Fine;
     public bool HasTwoAnswers;
+    public bool IsCompleteLuck;
 }
 
 public enum QuestionName

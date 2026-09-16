@@ -14,8 +14,7 @@ public class GameUIManager : Singleton<GameUIManager>
     [SerializeField] private TextMeshProUGUI _robotsLeftText;
     [SerializeField] private TextMeshProUGUI _coinsCountText;
 
-    [SerializeField] private TextMeshProUGUI _rejectCostSeat0Text;
-    [SerializeField] private TextMeshProUGUI _rejectCostSeat1Text;
+    [SerializeField] private TextMeshProUGUI _rejectCostText;
     [SerializeField] private TextMeshProUGUI _matchNegativeCostText;
     [SerializeField] private TextMeshProUGUI _matchPositiveGainText;
 
@@ -58,8 +57,7 @@ public class GameUIManager : Singleton<GameUIManager>
     }
     public void DisplayRejectCostText(int rejectCost)
     {
-        _rejectCostSeat0Text.text = rejectCost.ToString();
-        _rejectCostSeat1Text.text = rejectCost.ToString();
+        _rejectCostText.text = rejectCost.ToString();
     }
     public void DisplayDaysLeftText(int daysLeft)
     {
