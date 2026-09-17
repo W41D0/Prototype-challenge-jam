@@ -1800,7 +1800,7 @@ Transform:
   m_GameObject: {fileID: 604290825}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.59, z: 0}
+  m_LocalPosition: {x: 0, y: 1.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2581,8 +2581,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857415474}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22967, y: 0.20153, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2601,47 +2601,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoiceManager
   _voiceInYourHeadText: {fileID: 1132434285}
-  _generalNegativeLines:
-  - 
-  _quitNegativeLines:
-  - do you know the feeling of rejection? he sure does.
-  - why did you even let them get this far? now they're heartbroken.
-  - poor robot can't handle rejection. he's never gonna get over this by the way
-  _rejectNegativeLines:
-  - yeah they were totally in love. how could you?
-  - they were a perfect match and you took that away from them.
-  - you just got in the way of true love.
+  _generalNegativeLines: []
+  _quitOneSidedNegativeLines:
+  - Do you know the feeling of rejection? It hurts bots way more.
+  - Why did you let them get that far? the little bot's heartbroken now.
+  - Poor robot wasn't built to handle rejection.
+  - Why were you just sitting there? you should've done something!
+  _quitTwoSidedNegativeLines:
+  - They were so good for eachother why didn't you do something?
+  - Are you blind they were perfect for eachother!
+  - Why were you just sitting there? you should've done something!
+  _quitPositiveLines:
+  - 'They were obviously terrible together! '
+  - You should've seen that coming!
+  - They both hate eachother why didn't you call it early!
+  _rejectTwoSidedNegativeLines:
+  - Yeah they were totally in love, how could you?
+  - You monster! they loved eachother!
+  - You just got in the way of true love.
+  - They were a perfect match and you took that away from them!
+  _rejectOneSidedNegativeLines:
+  - One of them had feelings! maybe they could've worked it out!
+  - Poor bot was in love, while the other didn't feel the same, a shame really.
+  - Why didn't you wait? they were getting somewhere!
   _rejectPositiveLines:
-  - sadly for the best they weren't good for eachother
-  - they definetly werent good for eachother nice call
-  _oneSidedNegativeLines:
-  - nice one you just created an abusive relationship.
-  - ouch only one of them had feelings... thats not gonna end well.
-  _twoSidedNegativeLines:
-  - why'd you do that?! you know they both hate eachother right?
-  - 'they''re gonna make an absolutely horrendous couple. '
-  - 'wow that was real bad, they''re gonna need therapy for sure. '
-  _questionDecisionNegativeLines:
-  - yeah you're just blind
-  - how did you get that wrong??
-  - you've got the social awareness of a deaf pigeon
-  _gamblingDecisionNegativeLines:
-  - swing and miss!
-  - never bet on black
-  - never bet on red
-  _twoSidedPositiveLines:
-  - i guess that was some good matching
-  - that was dumb luck
-  - its only cause you got beginner's luck
-  - alright fine that was a good
-  _questionDecisionPositiveLines:
-  - yeah that one was really easy.
-  - obviously.
-  - anyone could've seen that.
-  _gamblingDecisionPositiveLines:
-  - lucky lucky you!
-  - took your chance and it paid off.
-  - I bet your luck won't ever run out!
+  - Ok fine good call they both weren't feeling it much.
+  - Nice! you're finally doing something right.
+  - They really dont like eachother don't they?
+  _matchOneSidedNegativeLines:
+  - Nice you just created an abusive relationship.
+  - That was clearly one-sided! Never a good idea.
+  - One of them hates, and one of them loves. Interesting but definetly not healthy.
+  _matchOneSidedPositiveLines:
+  - It seemed like one of them was a little more eager but they can work it out!
+  - Feelings were not entirely mutual but they're definetly getting somewhere.
+  - At least one of them's in love, maybe if they talked a bit longer they could've
+    been perfect.
+  _matchTwoSidedNegativeLines:
+  - Why'd you do that?! You know they both hate eachother right?
+  - They're going to make a horrendous couple.
+  - There was zero connection at all!
+  - Wow that was really bad, I give them a week max.
+  - They're gonna need therapy after this.
+  _matchPositiveLines:
+  - Finally doing some proper matchmaking!
+  - True love is beautiful isn't it?
+  - What a lovely pair they are!
 --- !u!1 &871983960
 GameObject:
   m_ObjectHideFlags: 0
@@ -3845,7 +3850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1238161127
 Transform:
   m_ObjectHideFlags: 0
@@ -3873,34 +3878,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07466893ef8af6e438bbdeac67bd16a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamblingManager
-  _gamblingQuestions:
-  - Question: 0
-    QuestionText: Is one of them is in love?
-    Reward: 6
-    Fine: -4
-    HasTwoAnswers: 1
-    IsCompleteLuck: 0
-  - Question: 1
-    QuestionText: is one of them is angry?
-    Reward: 3
-    Fine: -2
-    HasTwoAnswers: 1
-    IsCompleteLuck: 0
-  - Question: 3
-    QuestionText: Are they a match?
-    Reward: 5
-    Fine: -3
-    HasTwoAnswers: 1
-    IsCompleteLuck: 0
-  - Question: 2
-    QuestionText: I rolled a dice, did I get a 6?
-    Reward: 10
-    Fine: -2
-    HasTwoAnswers: 0
-    IsCompleteLuck: 1
-  _questionObjectPre: {fileID: 2816652931178094251, guid: e5c33ee2a466f73489cf6d13b685d707, type: 3}
-  _questionsObjectParent: {fileID: 974180706}
-  _questionsCount: 4
 --- !u!1 &1274505989
 GameObject:
   m_ObjectHideFlags: 0

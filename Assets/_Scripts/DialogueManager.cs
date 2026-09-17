@@ -7,7 +7,6 @@ using Unity.VisualScripting;
 using UnityEngine.InputSystem;
 using System.Linq;
 
-
 public class DialogueManager : Singleton<DialogueManager>
 {
     
@@ -147,6 +146,12 @@ public class DialogueManager : Singleton<DialogueManager>
         return false;
     }
 
+    public bool IsOneSidedNoAnger()
+    {
+        if (IsOneSided() && !ActiveRobotsDict[0].IsAngry && !ActiveRobotsDict[1].IsAngry) return true;
+        return false;
+    }
+
     public void MatchRobotPairing() //Called By Button
     {
         if (ActiveRobotsDict.TryGetValue(0, out Robot robotInSeat0) == false) return;
@@ -155,10 +160,15 @@ public class DialogueManager : Singleton<DialogueManager>
         if (IsGoodMatch())
         {
             goodMatchesCount++;
-            VoiceManager.Instance.ThinkTwoSidedPositive();
+            VoiceManager.Instance.ThinkMatchPositive();
         } 
-        else if (IsOneSided()) VoiceManager.Instance.ThinkOneSidedNegative();
-        else VoiceManager.Instance.ThinkTwoSidedNegative();
+        else if (IsOneSidedNoAnger())
+        {
+            goodMatchesCount++;
+            VoiceManager.Instance.ThinkMatchOneSidedPositive();
+        }
+        else if (IsOneSided()) VoiceManager.Instance.ThinkMatchOneSidedNegative();
+        else VoiceManager.Instance.ThinkMatchTwoSidedNegative();
 
         RemoveRobotFromSeat(0);
         RemoveRobotFromSeat(1);
@@ -176,11 +186,15 @@ public class DialogueManager : Singleton<DialogueManager>
         if (ActiveRobotsDict.TryGetValue(0, out Robot robotInSeat0) == false) return;
         if (ActiveRobotsDict.TryGetValue(1, out Robot robotInSeat1) == false) return;
 
-        if (SomeoneIsInLove()) VoiceManager.Instance.ThinkRejectNegative();
+
+        if (IsGoodMatch()) VoiceManager.Instance.ThinkRejectTwoSidedNegative();
+        else if (IsOneSided()) VoiceManager.Instance.ThinkRejectOneSidedNegative();
         else VoiceManager.Instance.ThinkRejectPositive();
 
         RemoveRobotFromSeat(0);
         RemoveRobotFromSeat(1);
+
+        isPaused = true;
 
         rejectedCount++;
         GameUIManager.Instance.DisplayRejectedCountText(rejectedCount);
@@ -190,13 +204,17 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void RobotQuitInSeat()
     {
-        VoiceManager.Instance.ThinkQuitNegative();
+        if (IsGoodMatch()) VoiceManager.Instance.ThinkQuitTwoSidedNegative();
+        else if (IsOneSided()) VoiceManager.Instance.ThinkQuitOneSidedNegative();
+        else VoiceManager.Instance.ThinkQuitPositive();
 
         RemoveRobotFromSeat(0);
         RemoveRobotFromSeat(1);
 
         quitCount++;
         GameUIManager.Instance.DisplayQuitCountText(quitCount);
+
+        isPaused = true;
 
         DayManager.Instance.UpdateCoins(BalanceSettings.RobotQuitCoinCost);
     }
