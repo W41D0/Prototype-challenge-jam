@@ -21,23 +21,33 @@ MonoBehaviour:
   InitialMatchedCountQuota: 02000000
   QuotaCoinBonus: 10
   InitialRobotCountPerDay: 10000000
-  TimeBetweenLines: 0.75
+  TimeBetweenTutorialCharacters: 0.03
+  TimeBetweenStoryCharacters: 0.03
+  TimeBetweenLinesRange: {x: 0.75, y: 2}
+  TimeBetweenCharactersRange: {x: 0.03, y: 0.075}
+  PitchTypingSoundRange: {x: 0.9, y: 1.4}
+  VolumeTypingSoundRange: {x: 0.2, y: 0.4}
+  TypingSounds:
+  - {fileID: 8300000, guid: b96efaf8a0193424185face39ead5f58, type: 3}
+  StopTypingAudio: 1
+  AudioOnTypeCounter: 5
   TextCountBase: 10
   TextCountVariability: 5
+  MaxTextCount: 18
   ConnectionRandomRollBaseChange: 3
   ConnectionBaseModifier: 1
   ConnectionVariability: 1
   AttractionVariability: 2
   EmojiConfidenceThresholdMultiplier: 2
-  EmojiConnectionVariability: 24
+  EmojiConnectionVariability: 32
   EmojiOnly: 1
   ExpressionConnectionVariability: 5
   AttractionBalanceVariability: 2
   MaxInitialInterestReduction: 4
   ConversationLengthBalanceMultiplier: 0.08
-  HasPatienceInterestDecrement: 0.25
-  IsAngryInterestDecrement: 0.5
-  IsInLoveInterestDecrement: 0.125
+  HasPatienceInterestDecrement: 0.5
+  IsAngryInterestDecrement: 0.75
+  IsInLoveInterestDecrement: 0
   MaxInterest: 10
   MaxConnection: 10
   MaxAttraction: 10

@@ -13,12 +13,21 @@ public class MatchBalanceSettings : ScriptableObject
     public int[] InitialMatchedCountQuota = new int[5] {2,3,4,4,5};
     public int QuotaCoinBonus = 10;
     public int[] InitialRobotCountPerDay = new int[5] {6,7,9,9,10};
+    public float TimeBetweenTutorialCharacters = 0.03f;
+    public float TimeBetweenStoryCharacters = 0.03f;
 
 
     [Header("Pair Settings")]
-    public float TimeBetweenLines = 0.75f;
+    public Vector2 TimeBetweenLinesRange = new Vector2(0.5f, 2f);
+    public Vector2 TimeBetweenCharactersRange = new Vector2(0.1f, 0.3f);
+    public Vector2 PitchTypingSoundRange = new Vector2(.8f, 1.2f);
+    public Vector2 VolumeTypingSoundRange = new Vector2(.8f, 1.2f);
+    public AudioClip[] TypingSounds;
+    public bool StopTypingAudio = true;
+    public int AudioOnTypeCounter = 3;
     public int TextCountBase = 10; //Base amount of characters in gibberish before adding Confidence
     public int TextCountVariability = 5; //Changes TextCountBase by random num between [-value,value]
+    public int MaxTextCount = 18; //Changes TextCountBase by random num between [-value,value]
     public int ConnectionRandomRollBaseChange = 3; //Random roll from [-value,value] that offsets robot Connection every convo update (value before Modifer and Variability)
     public int ConnectionBaseModifier = 1; //Unfairly biases all connection (could be positive or negative)
     public int ConnectionVariability = 1; //Changes ConnectionBaseModifier by random num between -value,value

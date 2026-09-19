@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DayManager : Singleton<DayManager>
 {
@@ -17,11 +18,14 @@ public class DayManager : Singleton<DayManager>
     public void StartGame()
     {
         CurrentDayNum = 0;
-        GameUIManager.Instance.ToggleNewDayButton(true);
-        GameUIManager.Instance.ToggleContinueButton(false);
+        DialogueManager.Instance.ShowStoryPrompt();
+        DialogueManager.Instance.ShowTutorialPrompt();
+        DialogueManager.Instance.ShowStartGamePrompt();
+        //GameUIManager.Instance.ToggleNewDayButton(true);
+        //GameUIManager.Instance.ToggleContinueButton(false);
     }
 
-    public void EndDay(int robotsMatched)
+    public void EndDay(int robotsMatched, bool didWin)
     {
         if (robotsMatched >= BalanceSettings.InitialMatchedCountQuota[CurrentDayNum-1])
         {
@@ -30,12 +34,12 @@ public class DayManager : Singleton<DayManager>
         
         if (CurrentDayNum >= BalanceSettings.TotalDaysCount)
         {
-            EndGame();
+            DialogueManager.Instance.ShowGameOverPrompt(didWin);
             return;
         } 
 
-        GameUIManager.Instance.ToggleNewDayButton(true);
-        GameUIManager.Instance.ToggleContinueButton(false);
+        //GameUIManager.Instance.ToggleNewDayButton(true);
+        //GameUIManager.Instance.ToggleContinueButton(false);
 
         DayStarted = false;
     }
@@ -48,8 +52,8 @@ public class DayManager : Singleton<DayManager>
         DialogueManager.Instance.StartDaySetup(BalanceSettings.InitialRobotCountPerDay[CurrentDayNum]);
         CurrentDayNum++;
 
-        GameUIManager.Instance.ToggleNewDayButton(false);
-        GameUIManager.Instance.ToggleContinueButton(true);
+        //GameUIManager.Instance.ToggleNewDayButton(false);
+        //GameUIManager.Instance.ToggleContinueButton(true);
 
         GameUIManager.Instance.DisplayDaysLeftText(BalanceSettings.TotalDaysCount - CurrentDayNum + 1); // includes current day
         GameUIManager.Instance.DisplayMatchedAndQuotaCountText(0, MatchedQuota);
@@ -63,7 +67,8 @@ public class DayManager : Singleton<DayManager>
 
     public void EndGame()
     {
-        GameUIManager.Instance.DisplayGameOver();
+        //GameUIManager.Instance.DisplayGameOver();
+        SceneManager.LoadScene(0);
     }
 
     public void UpdateCoins(int coinChange)
@@ -71,6 +76,6 @@ public class DayManager : Singleton<DayManager>
         Coins += coinChange;
         GameUIManager.Instance.DisplayCoinsCountText(Coins);
 
-        if (Coins <= 0) DialogueManager.Instance.RobotsFinished();
+        //if (Coins <= 0) DialogueManager.Instance.RobotsFinished();
     }
 }

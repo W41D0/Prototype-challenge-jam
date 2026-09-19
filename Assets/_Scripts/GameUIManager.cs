@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using NUnit.Framework;
+using UnityEngine.UI;
 
 public class GameUIManager : Singleton<GameUIManager>
 {
@@ -17,6 +18,9 @@ public class GameUIManager : Singleton<GameUIManager>
     [SerializeField] private TextMeshProUGUI _rejectCostText;
     [SerializeField] private TextMeshProUGUI _matchNegativeCostText;
     [SerializeField] private TextMeshProUGUI _matchPositiveGainText;
+    [SerializeField] private Image _characterIconImage;
+    [SerializeField] private Image _greenBatteryImage;
+    [SerializeField] private Image _redBatteryImage;
 
     [SerializeField] private GameObject _newDayButton;
     [SerializeField] private GameObject _continueButton;
@@ -45,6 +49,20 @@ public class GameUIManager : Singleton<GameUIManager>
     public void ToggleGamblingMenu()
     {
         _gamblingMenu.SetActive(!_gamblingMenu.activeInHierarchy);
+    }
+
+
+    public void DisplayCharacterIconImage(Sprite sprite)
+    {
+        _characterIconImage.sprite = sprite;
+    }
+    public void DisplayRedBatteryIconImage(Sprite sprite)
+    {
+        _redBatteryImage.sprite = sprite;
+    }
+    public void DisplayGreenBatteryIconImage(Sprite sprite)
+    {
+        _greenBatteryImage.sprite = sprite;
     }
 
     public void DisplayMatchPositiveGainText(int gain)

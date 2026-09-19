@@ -5,6 +5,7 @@ using System.Linq;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Collections;
 
 public class Robot : MonoBehaviour
 {
@@ -18,9 +19,11 @@ public class Robot : MonoBehaviour
     public bool IsAngry {get; private set;}
 
     [Header("References")]
-    [SerializeField] private Transform _textBoxPos;
+    [SerializeField] private RectTransform _textBoxTransform;
     [SerializeField] private GameObject _dialogueBubblePrefab;
     [SerializeField] private List<Sprite> _orderedExpressionSprites;
+    [SerializeField] private Animator _heartbeatAnim;
+    [SerializeField] private Animator _robotAnim;
 
 
 
@@ -29,7 +32,6 @@ public class Robot : MonoBehaviour
     private int linesReceivedCount;
     private int linesSentCount;
     private int seatNumber;
-    private GameObject currentActiveTextBubble;
     private SpriteRenderer sr;
 
     private MatchBalanceSettings BalanceSettings => DayManager.Instance.BalanceSettings;
@@ -39,6 +41,8 @@ public class Robot : MonoBehaviour
 
     public void InitializeRobot(CharacterData characterData, int seatNum)
     {
+        ResetRobot();
+
         CharacterData = characterData;
         seatNumber = seatNum;
 
@@ -47,10 +51,41 @@ public class Robot : MonoBehaviour
         if (seatNumber == 1) sr.flipX = true;
     }
 
-    public void DestroyRobot()
+    private void ResetRobot()
     {
-        Destroy(gameObject);
-    } 
+        linesReceivedCount = 0;
+        linesSentCount = 0;
+
+        Interest = 0;
+        Connection = 0;
+        Attraction = 0;
+
+        IsInLove = false;
+        IsAngry = false;
+
+        _heartbeatAnim.SetBool("Heartbroken", false);
+
+        CharacterData = null;
+    }
+
+    public void MutateAnim()
+    {
+        StartCoroutine(MutateAnimTimer());
+    }
+
+    public void BreakHeart()
+    {
+        _heartbeatAnim.SetBool("Heartbroken", true);
+    }
+
+    private IEnumerator MutateAnimTimer()
+    {
+        _robotAnim.enabled = true;
+        _robotAnim.SetTrigger("ScreenWipe");
+        yield return new WaitForSeconds(0.6f);
+
+        _robotAnim.enabled = false;
+    }
 
     public void ReceiveMatchedRobotCompatibility(int compatibilityStrength)
     {
@@ -81,7 +116,10 @@ public class Robot : MonoBehaviour
         linesReceivedCount++;
         CalculateInterest();
 
-        if (Interest == 0) DialogueManager.Instance.RobotQuitInSeat();
+        if (Interest == 0)
+        {
+            DialogueManager.Instance.RobotQuitInSeat(seatNumber);
+        } 
 
         Expression(Connection);
 
@@ -113,13 +151,12 @@ public class Robot : MonoBehaviour
     }
 
     public void SayDialogue(int textCount)
-    {
-        if (currentActiveTextBubble != null) DeleteActiveTextBubble();
+    {       
+        bool isRightSided = true;
+        if (seatNumber == 0) isRightSided = false;
 
-        GameObject textBubble = Instantiate(_dialogueBubblePrefab, _textBoxPos.position, Quaternion.identity, _textBoxPos);
-        textBubble.GetComponent<DialogueBox>().DisplayText(textCount, Connection, CharacterData.Confidence);
-
-        currentActiveTextBubble = textBubble;
+        GameObject textBubble = Instantiate(_dialogueBubblePrefab, _textBoxTransform);
+        textBubble.GetComponent<DialogueBox>().DisplayText(textCount, Connection, CharacterData.Confidence, isRightSided);
 
         linesSentCount++;
     }
@@ -135,12 +172,6 @@ public class Robot : MonoBehaviour
     private int VariabilityFunction(int baseValue, int variability)
     {
         return baseValue + Random.Range(-variability, variability);
-    }
-
-    private void DeleteActiveTextBubble()
-    {
-        currentActiveTextBubble.GetComponent<DialogueBox>().DeleteBubble();
-        currentActiveTextBubble = null;
     }
 
     private void ShowValues()
